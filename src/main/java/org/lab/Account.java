@@ -1,34 +1,53 @@
 package org.lab;
 
-public class Account {
+public abstract  class Account {
 
     private String accountNumber;
-    private String accountHolder;
+    private String owner;
     private double balance;
 
-    public Account(String accountNumber, String accountHolder, double balance) {
-        this.accountNumber = accountNumber;
-        this.accountHolder = accountHolder;
-        this.balance = balance;
-    }
+
 
     public void deposit(double amount) {
         balance += amount;
     }
 
     public void withdraw(double amount) {
-        balance -= amount;
+        if (amount <= balance) {
+            balance -= amount;
+        } else {
+            System.out.println("Insufficient funds");
+        }
+    }
+
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
     }
 
     public double getBalance() {
         return balance;
     }
 
-    public void display() {
-        System.out.println("Account Number: " + accountNumber);
-        System.out.println("Account Holder: " + accountHolder);
-        System.out.println("Balance: " + balance);
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
-
+    public void   displayDetails(){
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Owner: " + owner);
+        System.out.println("Balance: " + balance);
+    }
 }

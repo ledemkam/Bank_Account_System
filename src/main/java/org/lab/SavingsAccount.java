@@ -1,26 +1,27 @@
 package org.lab;
 
-public class SavingsAccount extends Account {
+public class SavingsAccount extends Account implements InterestBearing {
+
 
     private double interestRate;
-    private int years;
 
-    public SavingsAccount(String accountNumber, String accountHolder, double balance, double interestRate, int years) {
-        super(accountNumber, accountHolder, balance);
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public void setInterestRate(double interestRate) {
         this.interestRate = interestRate;
-        this.years = years;
-
     }
 
-    public void addInterest() {
-        double interest = getBalance() * Math.pow(1 + interestRate, years);
-        deposit(interest);
+    @Override
+    public double calculateInterest(int years) {
+        return getBalance() * Math.pow((1 + interestRate), years);
     }
 
-    public void display() {
-        super.display();
-        System.out.println("Interest Rate: " + interestRate);
+    @Override
+    public void   displayDetails(){
+        super.displayDetails();
+        System.out.println("interest Rate: " + interestRate);
     }
-
 
 }
